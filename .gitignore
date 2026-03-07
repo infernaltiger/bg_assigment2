@@ -1,0 +1,7 @@
+*.csv
+__pycache__/
+.venv/
+*.log
+.idea
+.python-version
+uv.lock
