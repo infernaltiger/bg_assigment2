@@ -5,4 +5,6 @@ friends.csv
 events.csv
 messages.csv
 
+link to them
+https://disk.yandex.com/d/FRPwuu8F9qUIGQ/f10
 If you don't have them - you can't recreate experiment
