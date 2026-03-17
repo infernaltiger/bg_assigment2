@@ -1,0 +1,8 @@
+Here - ith this folder - you need to have all data files:
+campaigns.csv
+client_first_purchase_date.csv
+friends.csv
+events.csv
+messages.csv
+
+If you don't have them - you can't recreate experiment

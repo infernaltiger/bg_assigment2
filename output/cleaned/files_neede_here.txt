@@ -1,0 +1,2 @@
+Here - ith this folder - you need to have all cleaned data files. You can run data cleaning script to get them.
+If you don't have them - you can't recreate experiment

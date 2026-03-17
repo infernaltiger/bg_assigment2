@@ -1,0 +1,21 @@
+product_id,brand,category_code,total_score,total_interactions,avg_price,recommendation_level
+1004749,samsung,electronics.smartphone,300,158,195.07,High Recommendation
+1005232,xiaomi,construction.tools.light,193,103,108.07,High Recommendation
+26401412,lucente,auto.accessories.compressor,168,91,184.82,High Recommendation
+2900926,dauscher,furniture.bedroom.blanket,96,51,51.46,High Recommendation
+2600218,,,94,52,166.4,High Recommendation
+1005265,xiaomi,construction.tools.light,88,47,169.04,High Recommendation
+3601060,artel,appliances.kitchen.washer,75,42,93.75,High Recommendation
+1005008,xiaomi,construction.tools.light,62,35,98.51,High Recommendation
+1004905,huawei,construction.tools.light,51,27,105.25,High Recommendation
+1004751,samsung,construction.tools.light,48,25,192.76,High Recommendation
+2900864,,furniture.bedroom.blanket,44,23,85.7,High Recommendation
+1004708,huawei,construction.tools.light,40,22,142.19,High Recommendation
+1004749,samsung,construction.tools.light,32,17,192.76,High Recommendation
+1004751,samsung,electronics.smartphone,29,17,195.04,High Recommendation
+26300087,lucente,appliances.kitchen.coffee_grinder,27,16,238.87,High Recommendation
+1005173,samsung,electronics.smartphone,24,17,643.23,High Recommendation
+3600253,midea,appliances.kitchen.washer,24,16,98.51,High Recommendation
+1801906,tcl,appliances.personal.massager,22,12,251.72,High Recommendation
+3801134,elenberg,appliances.iron,21,12,16.51,High Recommendation
+1005203,xiaomi,construction.tools.light,20,11,106.82,High Recommendation
