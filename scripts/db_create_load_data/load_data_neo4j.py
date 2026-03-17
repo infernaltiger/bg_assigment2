@@ -46,7 +46,7 @@ class Neo4jLoader:
     def execute_query(self, query, params=None):
         #Execute a query and return results
         with self.driver.session(database=self.database) as session:
-            return session.run(query, params)
+            return list(session.run(query, params))
 
     def execute_write(self, query, params=None):
         #Execute a write query
@@ -713,15 +713,15 @@ def main():
         # Statistics
         print("\n Database Statistics:")
         stats_query = """
-        MATCH (n)
-        RETURN labels(n)[0] AS label, count(*) AS count
-        UNION ALL
-        MATCH ()-[r]->()
-        RETURN type(r) AS label, count(*) AS count
-        ORDER BY count DESC
-        """
-        result = loader.execute_query(stats_query)
-        for record in result:
+                MATCH (n)
+                RETURN labels(n)[0] AS label, count(*) AS count
+                UNION ALL
+                MATCH ()-[r]->()
+                RETURN type(r) AS label, count(*) AS count
+                ORDER BY count DESC
+                """
+        results = loader.execute_query(stats_query)  # ← Returns list now
+        for record in results:
             print(f"   - {record['label']}: {record['count']:,}")
 
     except Exception as e:
