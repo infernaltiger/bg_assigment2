@@ -2,6 +2,10 @@
 
 This repository contains the code and scripts to reproduce an experiment comparing data loading and query performance across three different database systems: **PostgreSQL**, **MongoDB**, and **Neo4j**.
 
+The report for the assigment is called `final_report.pdf`\
+*Note: if you can't read text on screenshots and plots in report, try to zoom in. If you can't do it or it doesn't help,
+you can directly see the copies of them in `screenshots` and `output/benchmark_report` folders*
+
 ## Prerequisites
 
 All databases was installed localy on my laptop
