@@ -10,6 +10,7 @@ Specs of laptot:
 - cpu: amd ryzen 5 5600h with radeon graphics 3.30 GHz
 - ram: 16 gb
 - storage: 480 gb samsung ssd MZVL2512HCJQ-00B00
+- OS: Windows 10 PRO version 22H2 (build 19045)
 
 Version of databases:
 - PostgreSQL - 16.0 

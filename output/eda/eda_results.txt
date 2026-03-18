@@ -1,0 +1,486 @@
+D:\inno\bigdata\bg_assigment2\.venv\Scripts\python.exe D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py 
+================================================================================
+ DATA EXPLORATION SCRIPT
+ PATH: D:\inno\bigdata\bg_assigment2\data
+================================================================================
+
+================================================================================
+FILE: campaigns.csv
+================================================================================
+
+[SHAPE] 1,907 rows x 19 columns
+[MEMORY] 1.28 MB
+[INFO] No duplicate rows found
+
+[COLUMNS and NULLS]
+--------------------------------------------------------------------------------
+Column                                   | Type            | Null Count   | Null %   | Status
+--------------------------------------------------------------------------------
+id                                       | int64           | 0            | 0.00     | OK
+campaign_type                            | str             | 0            | 0.00     | OK
+channel                                  | str             | 0            | 0.00     | OK
+topic                                    | str             | 30           | 1.57     | LOW
+started_at                               | str             | 83           | 4.35     | LOW
+finished_at                              | str             | 99           | 5.19     | HIGH
+total_count                              | float64         | 83           | 4.35     | LOW
+ab_test                                  | object          | 1,895        | 99.37    | HIGH
+warmup_mode                              | object          | 77           | 4.04     | LOW
+hour_limit                               | float64         | 1,876        | 98.37    | HIGH
+subject_length                           | float64         | 27           | 1.42     | LOW
+subject_with_personalization             | object          | 27           | 1.42     | LOW
+subject_with_deadline                    | object          | 27           | 1.42     | LOW
+subject_with_emoji                       | object          | 27           | 1.42     | LOW
+subject_with_bonuses                     | object          | 27           | 1.42     | LOW
+subject_with_discount                    | object          | 27           | 1.42     | LOW
+subject_with_saleout                     | object          | 27           | 1.42     | LOW
+is_test                                  | object          | 1,880        | 98.58    | HIGH
+position                                 | float64         | 1,883        | 98.74    | HIGH
+
+[!] Columns with high null rate (>5.0%): finished_at, ab_test, hour_limit, is_test, position
+
+[FIRST 5 ROWS]
+--------------------------------------------------------------------------------
+   id campaign_type      channel     topic                  started_at          finished_at  total_count ab_test warmup_mode  hour_limit  subject_length subject_with_personalization subject_with_deadline subject_with_emoji subject_with_bonuses subject_with_discount subject_with_saleout is_test  position
+0  63          bulk  mobile_push  sale out  2021-04-30 07:22:36.615023  2021-04-30 07:23:41      48211.0     NaN       False         NaN           146.0                        False                 False               True                False                 False                False     NaN       NaN
+1  64          bulk  mobile_push  sale out  2021-04-30 09:02:50.817227  2021-04-30 09:04:08    1037337.0     NaN       False         NaN            97.0                        False                 False               True                False                 False                False     NaN       NaN
+2  78          bulk  mobile_push  sale out  2021-05-06 07:14:10.533318  2021-05-06 07:15:17      70080.0     NaN       False         NaN           146.0                        False                 False               True                False                 False                False     NaN       NaN
+3  79          bulk  mobile_push  sale out  2021-05-06 09:03:56.486750  2021-05-06 09:42:15     921838.0     NaN       False         NaN            97.0                        False                 False               True                False                 False                False     NaN       NaN
+4  89          bulk  mobile_push       NaN  2021-05-07 11:54:06.168664  2021-05-07 11:54:38      45503.0     NaN       False         NaN           109.0                        False                  True               True                False                 False                False     NaN       NaN
+
+[NUMERIC STATISTICS]
+--------------------------------------------------------------------------------
+                 id   total_count      hour_limit  subject_length   position
+count   1907.000000  1.824000e+03       31.000000     1880.000000  24.000000
+mean    6122.944415  3.741295e+05    64874.193548       94.340426   6.333333
+min       26.000000  1.000000e+00      300.000000        4.000000   0.000000
+max    25007.000000  5.371769e+06  1000000.000000      185.000000  14.000000
+
+[CATEGORICAL UNIQUES]
+--------------------------------------------------------------------------------
+campaign_type                       | 3      values | <StringArray>
+['bulk', 'trigger', 'transactional']
+Length: 3, dtype: str
+channel                             | 4      values | <StringArray>
+['mobile_push', 'email', 'multichannel', 'sms']
+Length: 4, dtype: str
+topic                               | 28     values (High cardinality)
+started_at                          | 1824   values (High cardinality)
+finished_at                         | 1790   values (High cardinality)
+ab_test                             | 1      values | [True]
+warmup_mode                         | 2      values | [False True]
+subject_with_personalization        | 2      values | [False True]
+subject_with_deadline               | 2      values | [False True]
+subject_with_emoji                  | 2      values | [True False]
+subject_with_bonuses                | 2      values | [False True]
+subject_with_discount               | 2      values | [False True]
+subject_with_saleout                | 2      values | [False True]
+is_test                             | 2      values | [False True]
+
+[DOMAIN ANALYSIS]
+--------------------------------------------------------------------------------
+  [FK CANDIDATE] id: 1,900 unique values
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:105: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  object_cols = df.select_dtypes(include=['object']).columns
+
+  Campaign Types:
+campaign_type
+bulk             1830
+transactional      50
+trigger            27
+
+  Channels:
+channel
+mobile_push     1396
+email            483
+multichannel      27
+sms                1
+
+  Topics:
+topic
+sale out                      779
+happy birthday                332
+offer after purchase          316
+leave review                  287
+event                          63
+welcome campaign               27
+order shipped                  10
+order ready for pickup         10
+order created                  10
+order reminder                  9
+abandoned cart                  6
+order pickup still pending      4
+abandoned view                  3
+abandoned category              2
+added to wish list              2
+abandoned search                2
+subscribed                      2
+price drop                      2
+order cancelled                 2
+removed from wish list          1
+double opt in                   1
+user added to segment           1
+recent purchase                 1
+back in stock                   1
+welcome letter                  1
+bonuses expired                 1
+profile updated                 1
+wish list status                1
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:146: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  date_cols = df.select_dtypes(include=['object']).columns
+
+  [DATE] started_at: 2021-04-30 07:22:36.615023 to 2023-04-21 15:30:14.136724
+
+  [DATE] finished_at: 2021-04-30 07:23:41 to 2023-04-21 16:09:50
+
+================================================================================
+FILE: client_first_purchase_date.csv
+================================================================================
+
+[SHAPE] 175,562 rows x 4 columns
+[MEMORY] 15.24 MB
+[INFO] No duplicate rows found
+
+[COLUMNS and NULLS]
+--------------------------------------------------------------------------------
+Column                                   | Type            | Null Count   | Null %   | Status
+--------------------------------------------------------------------------------
+client_id                                | int64           | 0            | 0.00     | OK
+first_purchase_date                      | str             | 0            | 0.00     | OK
+user_id                                  | int64           | 0            | 0.00     | OK
+user_device_id                           | int64           | 0            | 0.00     | OK
+
+[FIRST 5 ROWS]
+--------------------------------------------------------------------------------
+             client_id first_purchase_date    user_id  user_device_id
+0  1515915625558952193          2022-06-08  555895219               3
+1  1515915625487217034          2022-04-18  548721703               4
+2  1515915625638974914          2023-06-15  563897491               4
+3  1515915625486998291          2023-08-11  548699829               1
+4  1515915625485767944          2022-11-29  548576794               4
+
+[NUMERIC STATISTICS]
+--------------------------------------------------------------------------------
+          client_id       user_id  user_device_id
+count  1.755620e+05  1.755620e+05   175562.000000
+mean   1.515916e+18  5.517527e+08        4.490146
+min    1.515916e+18  5.468061e+08        0.000000
+max    1.515916e+18  5.651479e+08        9.000000
+
+[CATEGORICAL UNIQUES]
+--------------------------------------------------------------------------------
+first_purchase_date                 | 730    values (High cardinality)
+
+[DOMAIN ANALYSIS]
+--------------------------------------------------------------------------------
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:105: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  object_cols = df.select_dtypes(include=['object']).columns
+  [PK CANDIDATE] client_id: Unique values match row count
+  [FK CANDIDATE] user_id: 137,967 unique values
+  [FK CANDIDATE] user_device_id: 10 unique values
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:146: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  date_cols = df.select_dtypes(include=['object']).columns
+
+  [DATE] first_purchase_date: 2021-12-15 00:00:00 to 2023-12-14 00:00:00
+
+================================================================================
+FILE: events.csv
+================================================================================
+
+[SHAPE] 1,272,936 rows x 9 columns
+[MEMORY] 475.99 MB
+[INFO] No duplicate rows found
+
+[COLUMNS and NULLS]
+--------------------------------------------------------------------------------
+Column                                   | Type            | Null Count   | Null %   | Status
+--------------------------------------------------------------------------------
+event_time                               | str             | 0            | 0.00     | OK
+event_type                               | str             | 0            | 0.00     | OK
+product_id                               | int64           | 0            | 0.00     | OK
+category_id                              | int64           | 0            | 0.00     | OK
+category_code                            | str             | 327,368      | 25.72    | HIGH
+brand                                    | str             | 170,530      | 13.40    | HIGH
+price                                    | float64         | 0            | 0.00     | OK
+user_id                                  | int64           | 0            | 0.00     | OK
+user_session                             | str             | 0            | 0.00     | OK
+
+[!] Columns with high null rate (>5.0%): category_code, brand
+
+[FIRST 5 ROWS]
+--------------------------------------------------------------------------------
+                event_time event_type  product_id          category_id                     category_code  brand   price    user_id                          user_session
+0  2019-10-01 01:20:42 UTC       view     1801892  2053013554415534427              electronics.video.tv  yasin  115.70  554746974  028a2161-3ed0-4040-9d57-ad4bca6786a5
+1  2019-10-01 02:20:14 UTC       view     1002524  2053013555631882655            electronics.smartphone  apple  515.67  549029080  45b6c47b-68bf-4ec0-8474-976cd5d68758
+2  2019-10-01 02:22:00 UTC       view     1002544  2053013555631882655            electronics.smartphone  apple  464.13  549029080  45b6c47b-68bf-4ec0-8474-976cd5d68758
+3  2019-10-01 02:25:30 UTC       view     1002544  2053013555631882655            electronics.smartphone  apple  464.13  549029080  45b6c47b-68bf-4ec0-8474-976cd5d68758
+4  2019-10-01 02:40:31 UTC       view     2800403  2053013563835941749  appliances.kitchen.refrigerators    NaN  204.33  555465061  87515b74-457c-4272-8fcf-5739f0196b4e
+
+[NUMERIC STATISTICS]
+--------------------------------------------------------------------------------
+         product_id   category_id         price       user_id
+count  1.272936e+06  1.272936e+06  1.272936e+06  1.272936e+06
+mean   1.314679e+07  2.092277e+18  2.845304e+02  5.558588e+08
+min    1.000978e+06  2.053014e+18  0.000000e+00  5.468061e+08
+max    1.000634e+08  2.232732e+18  2.574070e+03  5.651588e+08
+
+[CATEGORICAL UNIQUES]
+--------------------------------------------------------------------------------
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:105: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  object_cols = df.select_dtypes(include=['object']).columns
+event_time                          | 1135767 values (High cardinality)
+event_type                          | 3      values | <StringArray>
+['view', 'purchase', 'cart']
+Length: 3, dtype: str
+category_code                       | 134    values (High cardinality)
+brand                               | 3496   values (High cardinality)
+user_session                        | 280880 values (High cardinality)
+
+[DOMAIN ANALYSIS]
+--------------------------------------------------------------------------------
+  [FK CANDIDATE] product_id: 90,356 unique values
+  [FK CANDIDATE] category_id: 1,154 unique values
+  [FK CANDIDATE] user_id: 65,725 unique values
+
+  Event Types:
+event_type
+view        1198460
+cart          51073
+purchase      23403
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:146: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  date_cols = df.select_dtypes(include=['object']).columns
+
+  [DATE] event_time: 2019-10-01 00:09:16+00:00 to 2019-12-31 23:57:33+00:00
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:155: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  pd.to_datetime(sample, errors='raise')
+
+================================================================================
+FILE: friends.csv
+================================================================================
+
+[SHAPE] 1,974,237 rows x 2 columns
+[MEMORY] 30.12 MB
+[WARNING] Found 1 duplicate rows (0.00%)
+
+[COLUMNS and NULLS]
+--------------------------------------------------------------------------------
+Column                                   | Type            | Null Count   | Null %   | Status
+--------------------------------------------------------------------------------
+friend1                                  | int64           | 0            | 0.00     | OK
+friend2                                  | int64           | 0            | 0.00     | OK
+
+[FIRST 5 ROWS]
+--------------------------------------------------------------------------------
+     friend1    friend2
+0  554924466  559983201
+1  550368521  561939090
+2  555485431  549159190
+3  550214807  559598681
+4  554893425  548809464
+
+[NUMERIC STATISTICS]
+--------------------------------------------------------------------------------
+            friend1       friend2
+count  1.974237e+06  1.974237e+06
+mean   5.558320e+08  5.558338e+08
+min    5.467997e+08  5.467997e+08
+max    5.651929e+08  5.651929e+08
+
+[DOMAIN ANALYSIS]
+--------------------------------------------------------------------------------
+
+================================================================================
+FILE: messages.csv
+================================================================================
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:53: DtypeWarning: Columns (0: platform, 1: email_provider, 2: clicked_first_time_at, 3: clicked_last_time_at, 4: hard_bounced_at, 5: soft_bounced_at, 6: complained_at, 7: blocked_at, 8: purchased_at) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(file_path)
+
+[SHAPE] 2,997,996 rows x 34 columns
+[MEMORY] 4361.77 MB
+[INFO] No duplicate rows found
+
+[COLUMNS and NULLS]
+--------------------------------------------------------------------------------
+Column                                   | Type            | Null Count   | Null %   | Status
+--------------------------------------------------------------------------------
+id                                       | int64           | 0            | 0.00     | OK
+message_id                               | str             | 0            | 0.00     | OK
+campaign_id                              | int64           | 0            | 0.00     | OK
+message_type                             | str             | 0            | 0.00     | OK
+client_id                                | int64           | 0            | 0.00     | OK
+channel                                  | str             | 0            | 0.00     | OK
+category                                 | float64         | 2,997,996    | 100.00   | HIGH
+platform                                 | str             | 2,778,175    | 92.67    | HIGH
+email_provider                           | str             | 1,268,230    | 42.30    | HIGH
+stream                                   | str             | 0            | 0.00     | OK
+date                                     | str             | 0            | 0.00     | OK
+sent_at                                  | str             | 0            | 0.00     | OK
+is_opened                                | str             | 0            | 0.00     | OK
+opened_first_time_at                     | str             | 2,516,058    | 83.92    | HIGH
+opened_last_time_at                      | str             | 2,516,058    | 83.92    | HIGH
+is_clicked                               | str             | 0            | 0.00     | OK
+clicked_first_time_at                    | str             | 2,927,636    | 97.65    | HIGH
+clicked_last_time_at                     | str             | 2,927,636    | 97.65    | HIGH
+is_unsubscribed                          | str             | 0            | 0.00     | OK
+unsubscribed_at                          | str             | 2,906,926    | 96.96    | HIGH
+is_hard_bounced                          | str             | 0            | 0.00     | OK
+hard_bounced_at                          | str             | 2,988,678    | 99.69    | HIGH
+is_soft_bounced                          | str             | 0            | 0.00     | OK
+soft_bounced_at                          | str             | 2,996,704    | 99.96    | HIGH
+is_complained                            | str             | 0            | 0.00     | OK
+complained_at                            | str             | 2,996,544    | 99.95    | HIGH
+is_blocked                               | str             | 0            | 0.00     | OK
+blocked_at                               | str             | 2,997,934    | 100.00   | HIGH
+is_purchased                             | str             | 0            | 0.00     | OK
+purchased_at                             | str             | 2,994,316    | 99.88    | HIGH
+created_at                               | str             | 0            | 0.00     | OK
+updated_at                               | str             | 0            | 0.00     | OK
+user_device_id                           | int64           | 0            | 0.00     | OK
+user_id                                  | int64           | 0            | 0.00     | OK
+
+[!] Columns with high null rate (>5.0%): category, platform, email_provider, opened_first_time_at, opened_last_time_at, clicked_first_time_at, clicked_last_time_at, unsubscribed_at, hard_bounced_at, soft_bounced_at, complained_at, blocked_at, purchased_at
+
+[FIRST 5 ROWS]
+--------------------------------------------------------------------------------
+        id                            message_id  campaign_id   message_type            client_id channel  category platform email_provider   stream        date              sent_at is_opened opened_first_time_at  opened_last_time_at is_clicked clicked_first_time_at clicked_last_time_at is_unsubscribed      unsubscribed_at is_hard_bounced hard_bounced_at is_soft_bounced soft_bounced_at is_complained complained_at is_blocked blocked_at is_purchased         purchased_at                  created_at                  updated_at  user_device_id    user_id
+0  3531179  07361d7b-3cf3-4ff4-be1b-a4286eff6be0           54  transactional  1515915625468156502   email       NaN      NaN        list.ru  desktop  2021-04-30  2021-04-30 15:06:07         t  2021-04-30 15:38:14  2021-04-30 15:38:14          t   2021-04-30 15:38:56  2021-04-30 15:38:56               f                  NaN               f             NaN               f             NaN             f           NaN          f        NaN            t  2021-05-06 11:58:00  2023-04-27 08:55:11.384771  2023-04-27 08:57:37.729439               2  546815650
+1  3531631  01f933c0-8c81-4f30-a0e0-f0dca013e5d5          179  transactional  1515915625488253422   email       NaN      NaN        mail.ru  desktop  2021-04-30  2021-04-30 09:22:09         t  2021-05-07 08:52:21  2021-05-07 08:52:21          t   2021-05-07 08:52:37  2021-05-07 08:52:37               f                  NaN               f             NaN               f             NaN             f           NaN          f        NaN            f                  NaN  2023-04-27 08:55:12.124013  2023-04-27 08:57:54.447534               2  548825342
+2  3528953  6d5f75b3-4f1d-47b0-aebb-61f4dfd74a16           32  transactional  1515915625495175157   email       NaN      NaN      gmail.com  desktop  2021-04-30  2021-04-30 04:15:44         t  2021-05-24 15:11:49  2021-05-24 15:11:49          f                   NaN                  NaN               f                  NaN               f             NaN               f             NaN             f           NaN          f        NaN            f                  NaN  2023-04-27 08:55:08.164053  2023-04-27 09:06:03.134045               7  549517515
+3  3532361  3aa317fc-8750-4781-92ce-38e51dff2438          179  transactional  1515915625549480744   email       NaN      NaN      gmail.com  desktop  2021-04-30  2021-04-30 08:40:29         t  2021-05-30 18:23:38  2021-05-30 18:23:38          f                   NaN                  NaN               f                  NaN               f             NaN               f             NaN             f           NaN          f        NaN            f                  NaN  2023-04-27 08:55:13.201113  2023-04-27 09:09:10.590255               4  554948074
+4  3523000  7f9dbbf1-0705-4f5a-aca8-dc2ec9cdf4c8           27  transactional  1515915625542297753   email       NaN      NaN        mail.ru  desktop  2021-04-30  2021-04-30 19:17:15         t  2021-07-29 19:17:40  2021-07-29 19:17:40          f                   NaN                  NaN               t  2021-07-29 19:17:42               f             NaN               f             NaN             f           NaN          f        NaN            f                  NaN  2023-04-27 08:54:59.542414  2023-04-27 09:25:19.813909               3  554229775
+
+[NUMERIC STATISTICS]
+--------------------------------------------------------------------------------
+                 id   campaign_id     client_id  category  user_device_id       user_id
+count  2.997996e+06  2.997996e+06  2.997996e+06       0.0    2.997996e+06  2.997996e+06
+mean   4.497577e+07  4.001852e+03  1.515916e+18       NaN    4.506344e+00  5.535206e+08
+min    3.520547e+06  2.600000e+01  1.515916e+18       NaN    0.000000e+00  5.467997e+08
+max    6.103027e+07  1.986800e+04  1.515916e+18       NaN    9.000000e+00  5.651929e+08
+
+[CATEGORICAL UNIQUES]
+--------------------------------------------------------------------------------
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:105: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  object_cols = df.select_dtypes(include=['object']).columns
+message_id                          | 2997996 values (High cardinality)
+message_type                        | 3      values | <StringArray>
+['transactional', 'trigger', 'bulk']
+Length: 3, dtype: str
+channel                             | 3      values | <StringArray>
+['email', 'mobile_push', 'web_push']
+Length: 3, dtype: str
+platform                            | 4      values | <StringArray>
+['desktop', 'phablet', 'smartphone', 'tablet']
+Length: 4, dtype: str
+email_provider                      | 178    values (High cardinality)
+stream                              | 1      values | <StringArray>
+['desktop']
+Length: 1, dtype: str
+date                                | 46     values (High cardinality)
+sent_at                             | 608536 values (High cardinality)
+is_opened                           | 2      values | <StringArray>
+['t', 'f']
+Length: 2, dtype: str
+opened_first_time_at                | 312470 values (High cardinality)
+opened_last_time_at                 | 318017 values (High cardinality)
+is_clicked                          | 2      values | <StringArray>
+['t', 'f']
+Length: 2, dtype: str
+clicked_first_time_at               | 67248  values (High cardinality)
+clicked_last_time_at                | 67689  values (High cardinality)
+is_unsubscribed                     | 2      values | <StringArray>
+['f', 't']
+Length: 2, dtype: str
+unsubscribed_at                     | 12814  values (High cardinality)
+is_hard_bounced                     | 2      values | <StringArray>
+['f', 't']
+Length: 2, dtype: str
+hard_bounced_at                     | 5406   values (High cardinality)
+is_soft_bounced                     | 2      values | <StringArray>
+['f', 't']
+Length: 2, dtype: str
+soft_bounced_at                     | 860    values (High cardinality)
+is_complained                       | 2      values | <StringArray>
+['f', 't']
+Length: 2, dtype: str
+complained_at                       | 1056   values (High cardinality)
+is_blocked                          | 2      values | <StringArray>
+['f', 't']
+Length: 2, dtype: str
+blocked_at                          | 56     values (High cardinality)
+is_purchased                        | 2      values | <StringArray>
+['t', 'f']
+Length: 2, dtype: str
+purchased_at                        | 3622   values (High cardinality)
+created_at                          | 2997996 values (High cardinality)
+updated_at                          | 2997996 values (High cardinality)
+
+[DOMAIN ANALYSIS]
+--------------------------------------------------------------------------------
+  [PK CANDIDATE] id: Unique values match row count
+  [PK CANDIDATE] message_id: Unique values match row count
+  [FK CANDIDATE] campaign_id: 65 unique values
+  [FK CANDIDATE] client_id: 1,004,620 unique values
+  [FK CANDIDATE] email_provider: 178 unique values
+  [FK CANDIDATE] user_device_id: 10 unique values
+  [FK CANDIDATE] user_id: 658,080 unique values
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:146: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  date_cols = df.select_dtypes(include=['object']).columns
+
+  Channels:
+channel
+email          1729728
+mobile_push    1268164
+web_push           104
+D:\inno\bigdata\bg_assigment2\scripts\scripts_for_data_proccecing\eda.py:155: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  pd.to_datetime(sample, errors='raise')
+
+  [DATE] date: 2021-04-30 00:00:00 to 2021-06-14 00:00:00
+
+  [DATE] sent_at: 2021-04-30 00:03:09 to 2021-06-14 23:59:42
+
+  [DATE] opened_first_time_at: 2021-04-30 00:08:33 to 2022-01-20 11:20:45
+
+  [DATE] opened_last_time_at: 2021-04-30 00:08:33 to 2022-01-20 11:20:45
+
+  [DATE] clicked_first_time_at: 2021-04-30 03:12:17 to 2022-01-10 22:52:26
+
+  [DATE] clicked_last_time_at: 2021-04-30 03:12:17 to 2022-01-10 22:52:26
+
+  [DATE] unsubscribed_at: 2021-04-30 05:12:57 to 2022-01-03 12:42:18
+
+  [DATE] hard_bounced_at: 2021-04-30 05:25:06 to 2021-06-14 05:50:07
+
+  [DATE] soft_bounced_at: 2021-04-30 12:28:24 to 2021-06-15 04:25:06
+
+  [DATE] complained_at: 2021-04-30 11:20:12 to 2022-01-11 05:20:34
+
+  [DATE] blocked_at: 2021-05-02 10:28:40 to 2021-05-28 05:39:54
+
+  [DATE] purchased_at: 2021-04-30 04:48:25 to 2021-11-18 16:41:18
+
+  [DATE] created_at: 2023-04-27 08:54:55.978119 to 2023-04-29 05:42:58.917269
+
+  [DATE] updated_at: 2023-04-27 08:54:55.979179 to 2023-04-29 08:17:27.360509
+
+================================================================================
+ SUMMARY
+================================================================================
+File                                     |         Rows |  Size (MB)
+--------------------------------------------------------------------------------
+campaigns.csv                            |        1,907 |       0.24
+client_first_purchase_date.csv           |      175,562 |       7.37
+events.csv                               |    1,272,936 |     164.97
+friends.csv                              |    1,974,237 |      39.54
+messages.csv                             |    2,997,996 |     658.42
+--------------------------------------------------------------------------------
+TOTAL                                    |    6,422,638 |     870.54
+================================================================================
+
+Process finished with exit code 0
