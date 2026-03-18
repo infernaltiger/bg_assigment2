@@ -20,11 +20,11 @@ DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'output', 'clea
 # Neo4j connection
 NEO4J_URI = 'bolt://localhost:7687'
 NEO4J_USER = 'neo4j'
-NEO4J_PASSWORD = ''  # CHANGE THIS to your password!
+NEO4J_PASSWORD = ''  #i will make this empty, please use your own password, i don't want to show mine
 DATABASE = 'neo4j'
 
-# Batch size for large inserts
-BATCH_SIZE = 10000
+# Batch size for large inserts - the maximum size for my basic config in neo4j is aprox 520000
+BATCH_SIZE = 100000
 
 
 # =============================================================================
@@ -152,10 +152,14 @@ def create_constraints(loader):
         ("CREATE INDEX idx_user IF NOT EXISTS FOR (user:User) ON (user.user_id)", "idx_user"),
         ("CREATE INDEX idx_product IF NOT EXISTS FOR (product:Product) ON (product.product_id)", "idx_product"),
         ("CREATE INDEX idx_cmp_id IF NOT EXISTS FOR (campaign:Campaign) ON (campaign.id)", "idx_cmp_id"),
+        ("CREATE INDEX idx_cmp_cmp_id IF NOT EXISTS FOR (campaign:Campaign) ON (campaign.campaign_id)", "idx_cmp_cmp_id"),
         ("CREATE INDEX idx_cmp_type IF NOT EXISTS FOR (campaign:Campaign) ON (campaign.campaign_type)", "idx_cmp_type"),
         ("CREATE INDEX idx_cat_id IF NOT EXISTS FOR (category:Category) ON (category.category_id)", "idx_cat_id"),
         ("CREATE INDEX idx_cat_code IF NOT EXISTS FOR (category:Category) ON (category.category_code)", "idx_cat_code"),
         ("CREATE INDEX idx_client_id IF NOT EXISTS FOR (client:Client) ON (client.client_id)", "idx_client_id"),
+        (
+        "CREATE INDEX idx_msg_is_purchased IF NOT EXISTS FOR ()-[r:RECIEVED_MESSAGE_ABOUT_CAMPAIGN]-() ON (r.is_purchased)",
+        "idx_msg_is_purchased")
     ]
 
     for query, name in constraints:
@@ -599,7 +603,7 @@ def load_messages(loader):
     query = """
     UNWIND $records AS record
     MATCH (user:User {user_id: record.user_id})
-    MATCH (campaign:Campaign {id: record.campaign_id})
+    MATCH (campaign:Campaign {campaign_id: record.campaign_id})
     CREATE (user)-[:RECIEVED_MESSAGE_ABOUT_CAMPAIGN {
         id: record.id,
         message_id: record.message_id,
