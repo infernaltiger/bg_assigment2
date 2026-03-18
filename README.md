@@ -6,20 +6,23 @@ This repository contains the code and scripts to reproduce an experiment compari
 
 All databases was installed localy on my laptop
 
-Specs of laptot:\
-cpu: amd ryzen 5 5600h with radeon graphics 3.30 GHz\
-ram: 16 gb \
-storage: 480 gb samsung ssd MZVL2512HCJQ-00B00
+Specs of laptot:
+- cpu: amd ryzen 5 5600h with radeon graphics 3.30 GHz
+- ram: 16 gb
+- storage: 480 gb samsung ssd MZVL2512HCJQ-00B00
 
-Version of databases:\
-PostgreSQL - 
+Version of databases:
+- PostgreSQL - 16.0 
+- MongoDB - v8.2.5
+- Neo4j - 2026.1.4 (enterprise)
+
 Before starting, ensure the following software is installed on your machine:
 
 - **Python** (compatible with `pyproject.toml`)
 - **uv** (recommended for dependency management)
-- **PostgreSQL**
-- **MongoDB**
-- **Neo4j**
+- **PostgreSQL** (at least version 16.0)
+- **MongoDB** (at least version v8.2.5)
+- **Neo4j** (at least version 2026.1.4)
 
 ## Installation & Setup
 
