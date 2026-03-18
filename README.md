@@ -12,7 +12,7 @@ Before starting, ensure the following software is installed locally on your mach
 - **MongoDB**
 - **Neo4j**
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Option 1: Using `uv` (Recommended)
 
