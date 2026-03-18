@@ -4,7 +4,16 @@ This repository contains the code and scripts to reproduce an experiment compari
 
 ## Prerequisites
 
-Before starting, ensure the following software is installed locally on your machine:
+All databases was installed localy on my laptop
+
+Specs of laptot:\
+cpu: amd ryzen 5 5600h with radeon graphics 3.30 GHz\
+ram: 16 gb \
+storage: 480 gb samsung ssd MZVL2512HCJQ-00B00
+
+Version of databases:\
+PostgreSQL - 
+Before starting, ensure the following software is installed on your machine:
 
 - **Python** (compatible with `pyproject.toml`)
 - **uv** (recommended for dependency management)
@@ -85,6 +94,10 @@ These scripts will display the execution time and save the results to the `outpu
 
 To get same experiments results, you need to run all 4 benchmark scripts.
 
+Before running the benchmark scripts, check `output/[]_queries_result` folder - it contains all data from benchmarks
+
+In folder `screenshot` there are dublicate-screenshots for results for each benchmark
+
 1. Benchmark scripts are available in:
 ```
     scripts/psql_queries/benchmark_psql.py
@@ -97,7 +110,8 @@ To get same experiments results, you need to run all 4 benchmark scripts.
 3. Execution: Run the scripts using Python.
 Each script will run every query 5 times for the respective database.
 Results will be saved to the `output` folder.
-
+4. Firstly run `benchmark_[psql, mongo, neo4j].py` - these benchmarks will create results `.cvs` files
+5. Secondly - run `final_benchmark.py` - it will use previous results and create comparison tables, charts, and statistics.
 
 ## Databeses schemas
 
