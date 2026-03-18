@@ -125,5 +125,8 @@ You can find Hacholade schemas for databeses in folder `hackolade_schemas`.
 
 In the folder `screenshots` you can see the screenshot of these schemas.
 
+Schema of hybrid model - you can find it in the end of the report or in `screenshots` folder.\
+The scripts to partially create the hybrid model are place in `scripts/hybrid_model` folder
+
 *NOTE: these scehmas may not be exact copies of real databases structure due to hackolade limitations -
 they are only refernce for implementation. (e.g. in hackolade i couldn't make an index for connection between nodes)*
