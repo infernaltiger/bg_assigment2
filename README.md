@@ -97,3 +97,13 @@ To get same experiments results, you need to run all 4 benchmark scripts.
 3. Execution: Run the scripts using Python.
 Each script will run every query 5 times for the respective database.
 Results will be saved to the `output` folder.
+
+
+## Databeses schemas
+
+You can find Hacholade schemas for databeses in folder `hackolade_schemas`.
+
+In the folder `screenshots` you can see the screenshot of these schemas.
+
+*NOTE: these scehmas may not be exact copies of real databases structure due to hackolade limitations -
+they are only refernce for implementation. (e.g. in hackolade i couldn't make an index for connection between nodes)*
