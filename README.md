@@ -97,7 +97,9 @@ These scripts will display the execution time and save the results to the `outpu
 
 To get same experiments results, you need to run all 4 benchmark scripts.
 
-Before running the benchmark scripts, check `output/[]_queries_result` folder - it contains all data from benchmarks
+The final results of experiment are place in `output/benchmark_report`
+
+Before running the benchmark scripts to reproduce, check `output/[]_queries_result` folder - it contains all data from benchmarks
 
 In folder `screenshot` there are dublicate-screenshots for results for each benchmark
 
@@ -112,9 +114,9 @@ In folder `screenshot` there are dublicate-screenshots for results for each benc
 2. Configuration: Update the database connection settings at the start of each script.
 3. Execution: Run the scripts using Python.
 Each script will run every query 5 times for the respective database.
-Results will be saved to the `output` folder.
+Results will be saved to the `output/[dbnanem]_queries_result` folder.
 4. Firstly run `benchmark_[psql, mongo, neo4j].py` - these benchmarks will create results `.cvs` files
-5. Secondly - run `final_benchmark.py` - it will use previous results and create comparison tables, charts, and statistics.
+5. Secondly - run `final_benchmark.py` - it will use previous results and create comparison charts and statistics.
 
 ## Databeses schemas
 
