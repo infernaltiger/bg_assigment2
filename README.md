@@ -50,12 +50,14 @@ You need to have PostgreSQL, MongoDB, and Neo4j running locally.
 1. Navigate to the folder: scripts/db_create_load_data.
 2. Open each .py script in this folder.
 3. Configuration: At the beginning of each script, locate the configuration section. You must update the connection parameters (e.g., database user password) to match your local setup.
-4. Once configured, run the shell scripts to create tables/collections and load the data
+4. Once configured, run the shell scripts to create tables/collections and load the data.
+
+For running these scripts i recommend to use git bash from the root directory of the project
 ```bash
     # Run all loading scripts
-./load_data_psql.sh
-./load_data_mongodb.sh
-./load_data_neo4j.sh
+./scripts/db_create_load_data/load_data_psql.sh
+./scripts/db_create_load_data/load_data_mongodb.sh
+./scripts/db_create_load_data/load_data_neo4j.sh
 ```
 *Note: These scripts may take some time depending on your machine specifications.*
 **Neo4j Warning**: The Neo4j loading script uses the CREATE operator. If the script fails and you need to run it again, you must clear the data from the Neo4j database first. Otherwise, the script may fail due to existing constraints or data.
