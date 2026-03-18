@@ -13,7 +13,6 @@ import pandas as pd
 import os
 import time
 import sys
-from datetime import datetime
 
 # =============================================================================
 # CONFIGURATION
@@ -89,7 +88,6 @@ def main():
     print("=" * 80)
     print(" MongoDB Benchmark (5 runs per query)")
     print("=" * 80)
-    print(f" Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f" Number of runs: {NUM_RUNS}")
     print()
 
@@ -97,13 +95,6 @@ def main():
     client = MongoClient(MONGO_URI)
     db = client[DB_NAME]
     print(f"Connected to MongoDB ({DB_NAME})")
-
-    # Warmup: Run each query once without timing (populate cache)
-    print("\n Warming up cache (running each query once)...")
-    q1_execute_query(None, db)
-    q2_execute_query(None, db)
-    q3_execute_query(None, db)
-    print(" Cache warmed up")
 
     results = []
 
